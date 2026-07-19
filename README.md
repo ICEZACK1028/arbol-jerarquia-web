@@ -1,7 +1,5 @@
 # Jerarquía de Empleados — Frontend
 
-Aplicación web desarrollada con **ASP.NET Core MVC (.NET 8)** que consume la API REST del backend para visualizar el árbol de jerarquía de empleados y realizar operaciones CRUD.
-
 ## Tecnologías
 
 * .NET 8
