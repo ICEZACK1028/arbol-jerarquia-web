@@ -1,0 +1,25 @@
+﻿@model JerarquiaEmpleados.Web.Models.EmpleadoViewModel
+
+<li>
+    <div class="nodo-empleado">
+        <span class="badge bg-secondary">@Model.Codigo</span>
+        <strong>@Model.Puesto</strong> — @Model.Nombre
+
+        <a asp-action="Editar" asp-route-id="@Model.Codigo" class="btn btn-sm btn-outline-primary ms-2">Editar</a>
+
+        <form asp-action="Eliminar" asp-route-id="@Model.Codigo" method="post" class="d-inline"
+              onsubmit="return confirm('¿Seguro que deseas eliminar a @Model.Nombre?');">
+            <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+        </form>
+    </div>
+
+    @if (Model.Hijos.Any())
+    {
+        <ul>
+            @foreach (var hijo in Model.Hijos)
+            {
+                @await Html.PartialAsync("_NodoEmpleado", hijo)
+            }
+        </ul>
+    }
+</li>

@@ -1,0 +1,21 @@
+﻿@model List<JerarquiaEmpleados.Web.Models.EmpleadoViewModel>
+
+@{
+    ViewData["Title"] = "Árbol de Jerarquía";
+}
+
+<h1>Árbol de Jerarquía de Empleados</h1>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<a asp-action="Crear" class="btn btn-success mb-3">+ Nuevo Empleado</a>
+
+<ul class="arbol-jerarquia">
+    @foreach (var raiz in Model)
+    {
+        @await Html.PartialAsync("_NodoEmpleado", raiz)
+    }
+</ul>
