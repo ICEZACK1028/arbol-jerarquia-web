@@ -1,82 +1,51 @@
-# \# Jerarquía de Empleados — Frontend
+# Jerarquía de Empleados — Frontend
 
-# 
+Aplicación web desarrollada con **ASP.NET Core MVC (.NET 8)** que consume la API REST del backend para visualizar el árbol de jerarquía de empleados y realizar operaciones CRUD.
 
-# Aplicación web en ASP.NET Core MVC (.NET 8) que consume la API REST del backend para mostrar el árbol de jerarquía de empleados y gestionar operaciones CRUD.
+## Tecnologías
 
-# 
+* .NET 8
+* ASP.NET Core MVC
+* Bootstrap
+* `HttpClientFactory` para el consumo de la API REST
 
-# \## Tecnologías
+## Requisitos previos
 
-# 
+* .NET 8 SDK
+* El proyecto **Backend** en ejecución:
 
-# \- .NET 8 / ASP.NET Core MVC
+  * https://github.com/ICEZACK1028/arbol-jerarquia-api/tree/main
 
-# \- Bootstrap
+## Configuración
 
-# \- HttpClientFactory para consumo de API REST
+En el archivo `appsettings.json`, configura la URL base del backend:
 
-# 
+```json
+{
+  "ApiSettings": {
+    "BaseUrl": "https://localhost:7272/"
+  }
+}
+```
 
-# \## Requisitos previos
+## Ejecución
 
-# 
+```bash
+dotnet restore
+dotnet run
+```
 
-# \- .NET 8 SDK
+La aplicación estará disponible en:
 
-# \- El proyecto Backend corriendo (repositorio: https://github.com/ICEZACK1028/arbol-jerarquia-api/tree/main)
+```text
+https://localhost:7084
+```
 
-# 
+Al acceder a la aplicación, se mostrará automáticamente el árbol de jerarquía de empleados.
 
-# \## Configuración
+## Funcionalidades
 
-# 
-
-# En `appsettings.json`, ajusta la URL base del backend:
-
-# 
-
-# \\`\\`\\`json
-
-# "ApiSettings": {
-
-# &#x20; "BaseUrl": "https://localhost:7272/"
-
-# }
-
-# \\`\\`\\`
-
-# 
-
-# \## Ejecución
-
-# 
-
-# \\`\\`\\`bash
-
-# dotnet restore
-
-# dotnet run
-
-# \\`\\`\\`
-
-# 
-
-# La aplicación queda disponible en `https://localhost:7084`. Al abrir el sitio, se muestra directamente el árbol de jerarquía.
-
-# 
-
-# \## Funcionalidades
-
-# 
-
-# \- Visualización del árbol de jerarquía de empleados.
-
-# \- Crear nuevo empleado, asignando opcionalmente un jefe.
-
-# \- Editar empleado existente.
-
-# \- Eliminar empleado.
-
-
-
+* Visualización del árbol de jerarquía de empleados.
+* Creación de nuevos empleados con asignación opcional de un jefe.
+* Edición de empleados existentes.
+* Eliminación de empleados.
