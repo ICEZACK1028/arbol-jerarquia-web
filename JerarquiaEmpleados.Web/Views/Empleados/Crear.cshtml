@@ -1,0 +1,37 @@
+﻿@model JerarquiaEmpleados.Web.Models.EmpleadoFormViewModel
+
+@{
+    ViewData["Title"] = "Nuevo Empleado";
+}
+
+<h1>Nuevo Empleado</h1>
+
+<form asp-action="Crear" method="post" class="w-50">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Puesto" class="form-label"></label>
+        <input asp-for="Puesto" class="form-control" />
+        <span asp-validation-for="Puesto" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CodigoJefe" class="form-label">Jefe (opcional)</label>
+        <select asp-for="CodigoJefe" class="form-select">
+            <option value="">-- Sin jefe (raíz del árbol) --</option>
+            @foreach (var e in Model.EmpleadosDisponibles)
+            {
+                <option value="@e.Codigo">@e.Codigo - @e.Puesto - @e.Nombre</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
