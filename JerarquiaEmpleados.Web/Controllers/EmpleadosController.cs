@@ -69,7 +69,7 @@ namespace JerarquiaEmpleados.Web.Controllers
             var modelo = new EmpleadoFormViewModel
             {
                 Codigo = empleado.Codigo,
-                Puesto = empleado.Puesto,
+                Puesto = empleado.Puesto,   
                 Nombre = empleado.Nombre,
                 CodigoJefe = empleado.CodigoJefe,
                 EmpleadosDisponibles = lista.Where(e => e.Codigo != id).ToList()
@@ -97,7 +97,7 @@ namespace JerarquiaEmpleados.Web.Controllers
             }
             catch (HttpRequestException ex)
             {
-                ModelState.AddModelError(string.Empty, $"rsrror al actualizar: {ex.Message}");
+                ModelState.AddModelError(string.Empty, $"Error al actualizar - {ex.Message}");
                 modelo.EmpleadosDisponibles = (await _apiService.ObtenerArbolAsync())
                     .Where(e => e.Codigo != id).ToList();
                 return View(modelo);
@@ -115,7 +115,7 @@ namespace JerarquiaEmpleados.Web.Controllers
             }
             catch (HttpRequestException ex)
             {
-                TempData["Error"] = $"No se pudo eliminar: {ex.Message}";
+                TempData["Error"] = $"Error al eliminar - {ex.Message}";
             }
 
             return RedirectToAction(nameof(Index));

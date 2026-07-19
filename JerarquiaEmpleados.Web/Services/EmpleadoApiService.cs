@@ -22,20 +22,35 @@ namespace JerarquiaEmpleados.Web.Services
         {
             var payload = new { empleado.Puesto, empleado.Nombre, empleado.CodigoJefe };
             var response = await _httpClient.PostAsJsonAsync("api/empleados", payload);
-            response.EnsureSuccessStatusCode();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var mensajeError = await response.Content.ReadAsStringAsync();
+                throw new HttpRequestException(mensajeError);
+            }
         }
 
         public async Task ActualizarAsync(int codigo, EmpleadoFormViewModel empleado)
         {
             var payload = new { empleado.Puesto, empleado.Nombre, empleado.CodigoJefe };
             var response = await _httpClient.PutAsJsonAsync($"api/empleados/{codigo}", payload);
-            response.EnsureSuccessStatusCode();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var mensajeError = await response.Content.ReadAsStringAsync();
+                throw new HttpRequestException(mensajeError);
+            }
         }
 
         public async Task EliminarAsync(int codigo)
         {
             var response = await _httpClient.DeleteAsync($"api/empleados/{codigo}");
-            response.EnsureSuccessStatusCode();
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var mensajeError = await response.Content.ReadAsStringAsync();
+                throw new HttpRequestException(mensajeError);
+            }
         }
     }
 }
